@@ -1,0 +1,42 @@
+{
+  "name": "angular2-boilerplate",
+  "version": "1.0.0",
+  "description": "this is just a simple starter",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hxltinh/angular2-boilerplate.git"
+  },
+  "author": "Tinh Ha xuan Long",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/hxltinh/angular2-boilerplate/issues"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "awesome-typescript-loader": "^1.1.1",
+    "babel": "^6.5.2",
+    "babel-core": "^6.9.1",
+    "babel-loader": "^6.2.4",
+    "babel-polyfill": "^6.9.1",
+    "babel-preset-es2015": "^6.9.0",
+    "extract-text-webpack-plugin": "^1.0.1",
+    "gulp": "github:gulpjs/gulp#4.0",
+    "gulp-exec": "^2.1.2",
+    "gulp-inject": "^4.1.0",
+    "gulp-jade": "^1.1.0",
+    "gulp-util": "^3.0.7",
+    "gulp-watch": "^4.3.8",
+    "node-sass": "^3.8.0",
+    "sass-loader": "^3.2.1",
+    "webpack": "^1.13.1",
+    "webpack-dev-middleware": "^1.6.1",
+    "webpack-dev-server": "^1.14.1",
+    "webpack-hot-middleware": "^2.10.0",
+    "webpack-stream": "^3.2.0"
+  },
+  "homepage": "https://github.com/hxltinh/angular2-boilerplate#readme"
+}
