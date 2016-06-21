@@ -22,9 +22,3 @@ $ npm install --global typescript
 ## commands
 - $ npm run dev: development mode
 - $ npm run prod: production mode
-```
-Please make sure mongodb run first
-go to admin: http://localhost:7000/admin
-admin username: admin@blog.com
-admin password: 123456
-```
