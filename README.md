@@ -3,24 +3,25 @@
 
 ## introduction
 ```
-My personal blog, you can freely use this source for your own purpose.
-- Backend: nodejs - loopback as API server, mongodb as database
-- Frontend: reactjs, es6(webpack-babel), foundation css framework.
-- Roadmap: intergrated Redis, implement unit test(if I have some spare time).
+Angular 2, Webpack, ES6 boilerplate
 ```
 
 ## environment
-- node: 4.x.x
-- npm: 3.x.x
+- node: 6.x.x
+- npm: 3.8.x
 
 ## Install
 ```
 $ npm install
+$ npm install --global webpack
+$ npm install --global webpack-dev-server
+$ npm install --global typings
+$ npm install --global typescript
 ```
 
 ## commands
-- $ gulp serve: development
-- $ gulp production: production
+- $ npm run dev: development mode
+- $ npm run prod: production mode
 ```
 Please make sure mongodb run first
 go to admin: http://localhost:7000/admin
