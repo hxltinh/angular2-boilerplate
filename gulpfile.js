@@ -1,5 +1,7 @@
 'use strict';
 const gulp = require('gulp');
+const del = require('del');
+const vinylPaths = require('vinyl-paths');
 const gutil = require('gulp-util');
 const webpack = require('webpack');
 const webpackDev = require('./pre/webpack/development');
@@ -20,8 +22,12 @@ gulp.task('dev', (cb) => {
   return cb();
 });
 
-gulp.task('copyLib', done => {
+gulp.task('copy-lib', done => {
   gulp.src(['src/lib/**/*']).pipe(gulp.dest('client/lib'))
+  done();
+});
+gulp.task('clean-client', done => {
+  gulp.src('client/*').pipe(vinylPaths(del));
   done();
 });
 
@@ -33,4 +39,4 @@ gulp.task( 'prodTranspile', (done) => {
   });
 });
 
-gulp.task('production',gulp.parallel('copyLib','prodTranspile'));
+gulp.task('production',gulp.series('clean-client', 'copy-lib', 'prodTranspile'));

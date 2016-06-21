@@ -34,6 +34,7 @@ webpackJsonp([1],{
 	        this.heroes = HEROES;
 	    }
 	    onSelect(hero) {
+	        console.log('item is clicked');
 	        this.selectedHero = hero;
 	        console.info('selected Hero:', this.selectedHero);
 	    }
@@ -123,9 +124,17 @@ webpackJsonp([1],{
 
 	"use strict";
 	const platform_browser_dynamic_1 = __webpack_require__(340);
-	const app_component_ts_1 = __webpack_require__(514);
-	platform_browser_dynamic_1.bootstrap(app_component_ts_1.AppComponent);
+	const app_component_1 = __webpack_require__(514);
+	__webpack_require__(679);
+	platform_browser_dynamic_1.bootstrap(app_component_1.AppComponent);
 
+
+/***/ },
+
+/***/ 679:
+/***/ function(module, exports) {
+
+	// removed by extract-text-webpack-plugin
 
 /***/ }
 

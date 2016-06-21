@@ -97,6 +97,7 @@ export class AppComponent {
   heroes = HEROES;
   selectedHero: Hero;
   onSelect(hero:Hero) {
+    console.log('item is clicked');
     this.selectedHero = hero;
     console.info('selected Hero:', this.selectedHero);
   }

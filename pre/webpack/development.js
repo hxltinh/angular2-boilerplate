@@ -1,25 +1,30 @@
 const path = require('path');
 const webpack = require('webpack');
-
+const DedupePlugin = require('webpack/lib/optimize/DedupePlugin');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const envConfig = require('./config.json')[process.env.NODE_ENV];
 
 module.exports = () => {
   const config = {
     cache: true,
     debug: true,
-    devtool: 'cheap-module-eval-source-map',
+    devtool: 'source-map',
     entry: {
-      main: [
+      bundle: [
+        './src/ts/main.ts'
+      ],
+      vendor: [
         `webpack-dev-server/client?http://localhost:${envConfig.api.port}`,
         './src/ts/polyfills.browser.ts',
         './src/ts/vendor.ts',
-        './src/ts/main.ts'
       ]
     },
 
     output: {
-      path: path.resolve(__dirname, '/client/js'),
-      filename: 'bundle.js',
+      // path: path.resolve(__dirname, '/client/js'),
+      // filename: 'bundle.js',
+      filename: '[name].js',
+      path: path.resolve('./client'),
       publicPath: '/assets/'
     },
 
@@ -27,10 +32,10 @@ module.exports = () => {
       extensions: ['', '.ts', '.js', '.json'],
       modulesDirectories: ['node_modules'],
       root: path.resolve('./src'),
-      alias: {
-        // legacy imports pre-rc releases
-        'angular2': helpers.root('node_modules/@angularclass/angular2-beta-to-rc-alias/dist/beta-17')
-      },
+      // alias: {
+      //   // legacy imports pre-rc releases
+      //   'angular2': helpers.root('node_modules/@angularclass/angular2-beta-to-rc-alias/dist/beta-17')
+      // },
     },
 
     module: {
@@ -39,7 +44,7 @@ module.exports = () => {
         { test: /\.html$/, loader: 'raw' },
         { test: /\.scss$/, loaders: [ 'style', 'css?sourceMap', 'sass?sourceMap' ]},
         { test: /\.css$/, loaders: [ 'style', 'css?sourceMap' ] },
-        // { test: /.(gif|jpg|png|woff(2)?|eot|ttf|svg)(\?[a-z0-9=\.]+)?$/, loader: 'url-loader' },
+        { test: /.(gif|jpg|png|woff(2)?|eot|ttf|svg)(\?[a-z0-9=\.]+)?$/, loader: 'url-loader' },
         // { test: /\.tpl$/, loader: 'html' }
       ]
     },
@@ -57,6 +62,7 @@ module.exports = () => {
         'window.jQuery': 'jquery'
       }),
       new webpack.HotModuleReplacementPlugin(),
+      new DedupePlugin(),
       new webpack.NoErrorsPlugin()
     ],
 
@@ -76,7 +82,7 @@ module.exports = () => {
     noInfo: true,
     contentBase: './src',
     publicPath: config.output.publicPath,
-    host: 'localhost',
+    host: envConfig.api.host,
     port: envConfig.api.port,
     historyApiFallback: true,
     proxy: {

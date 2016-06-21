@@ -1,6 +1,8 @@
 const path = require('path');
 const webpack = require('webpack');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const DedupePlugin = require('webpack/lib/optimize/DedupePlugin');
+const UglifyJsPlugin = require('webpack/lib/optimize/UglifyJsPlugin');
 
 const envConfig = require('./config.json')[process.env.NODE_ENV];
 
@@ -39,9 +41,9 @@ module.exports = () => {
       loaders: [
         { test: /\.ts$/, loader: 'awesome-typescript-loader', exclude: [/\.(spec|e2e)\.ts$/] },
         { test: /\.html$/, loader: 'raw' },
-        { test: /\.scss$/, loaders: [ 'style', 'css?sourceMap', 'sass?sourceMap' ]},
-        { test: /\.css$/, loaders: [ 'style', 'css?sourceMap' ] },
-        // { test: /.(gif|jpg|png|woff(2)?|eot|ttf|svg)(\?[a-z0-9=\.]+)?$/, loader: 'url-loader' },
+        { test: /\.scss$/, loader: ExtractTextPlugin.extract('style', 'css!sass') },
+        { test: /\.css$/, loader: ExtractTextPlugin.extract('style-loader', 'css-loader') },
+        { test: /.(gif|jpg|png|woff(2)?|eot|ttf|svg)(\?[a-z0-9=\.]+)?$/, loader: 'url-loader' },
         // { test: /\.tpl$/, loader: 'html' }
       ]
     },
@@ -55,8 +57,8 @@ module.exports = () => {
       new webpack.optimize.OccurenceOrderPlugin(),
       new webpack.DefinePlugin({
         'process.env.NODE_ENV': JSON.stringify('production'),
-        '__apiHostName__': JSON.stringify('https://tinhha-blog.herokuapp.com'),
-        '__apiPort__': JSON.stringify('')
+        '__apiHostName__': JSON.stringify(envConfig.api.host),
+        '__apiPort__': JSON.stringify(envConfig.api.port)
       }),
       new webpack.optimize.DedupePlugin(),
       new webpack.optimize.AggressiveMergingPlugin(),
@@ -73,6 +75,28 @@ module.exports = () => {
         $: 'jquery',
         jQuery: 'jquery',
         'window.jQuery': 'jquery'
+      }),
+      new DedupePlugin(),
+      new UglifyJsPlugin({
+        // beautify: true, //debug
+        // mangle: false, //debug
+        // dead_code: false, //debug
+        // unused: false, //debug
+        // deadCode: false, //debug
+        // compress: {
+        //   screw_ie8: true,
+        //   keep_fnames: true,
+        //   drop_debugger: false,
+        //   dead_code: false,
+        //   unused: false
+        // }, // debug
+        // comments: true, //debug
+
+
+        beautify: false, //prod
+        mangle: { screw_ie8 : true }, //prod
+        compress: { screw_ie8: true }, //prod
+        comments: false //prod
       })
     ],
 
