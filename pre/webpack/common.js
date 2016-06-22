@@ -1,9 +1,12 @@
+/*
+ *  webpack common config for all enviroment
+ */
 const path = require('path');
 const webpack = require('webpack');
+const envConfig = require('./config.json')[process.env.NODE_ENV];
 
 module.exports = {
   cache: true,
-  debug: true,
   devtool: 'cheap-module-source-map',
   entry: {
     bundle: [
@@ -36,6 +39,11 @@ module.exports = {
   },
 
   plugins: [
+    new webpack.DefinePlugin({
+      '__env__': JSON.stringify(process.env.NODE_ENV),
+      '__apiHostName__': JSON.stringify( envConfig.api.host ),
+      '__apiPort__': JSON.stringify( envConfig.api.port )
+    }),
     new webpack.ProvidePlugin({
       $: 'jquery',
       jQuery: 'jquery',

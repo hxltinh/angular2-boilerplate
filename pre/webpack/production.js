@@ -26,11 +26,6 @@ module.exports = () => {
   };
 
   config.plugins = config.plugins.concat([
-    new webpack.DefinePlugin({
-      'process.env.NODE_ENV': JSON.stringify('development'),
-      '__apiHostName__': JSON.stringify( envConfig.api.host ),
-      '__apiPort__': JSON.stringify( envConfig.api.port )
-    }),
     new ExtractTextPlugin('styles.css'),
     new webpack.optimize.OccurenceOrderPlugin(),
     new webpack.optimize.DedupePlugin(),

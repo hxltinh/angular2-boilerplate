@@ -7,8 +7,10 @@ const commonConf = require('./common');
 
 module.exports = () => {
   const config = _.cloneDeep(commonConf);
-  
+
   config.devtool = 'cheap-module-source-map';
+
+  config.debug = true;
 
   config.entry.vendor = config.entry.vendor.concat([
     `webpack-dev-server/client?http://localhost:${envConfig.api.port}`,
@@ -23,11 +25,6 @@ module.exports = () => {
   ]);
 
   config.plugins = config.plugins.concat([
-    new webpack.DefinePlugin({
-      'process.env.NODE_ENV': JSON.stringify('development'),
-      '__apiHostName__': JSON.stringify( envConfig.api.host ),
-      '__apiPort__': JSON.stringify( envConfig.api.port )
-    }),
     new webpack.HotModuleReplacementPlugin(),
   ]);
 
