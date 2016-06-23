@@ -12,11 +12,12 @@ Angular 2, Webpack, ES6 boilerplate
 
 ## Install
 ```
-$ npm install
 $ npm install --global webpack
 $ npm install --global webpack-dev-server
 $ npm install --global typings
 $ npm install --global typescript
+$ npm install
+$ typings install
 ```
 
 ## commands
