@@ -28,7 +28,8 @@ module.exports = {
     modulesDirectories: ['node_modules'],
     root: path.resolve('./src'),
     alias: {
-      'app': 'src/ts/app'
+      'app': 'src/ts/app',
+      'angular2': path.join(__dirname, 'node_modules', '@angularclass', 'angular2-beta-to-rc-alias', 'dist', 'beta-17')
     }
   },
 
