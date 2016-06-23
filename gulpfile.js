@@ -23,11 +23,11 @@ gulp.task('dev', (cb) => {
 });
 
 gulp.task('copy-lib', done => {
-  gulp.src(['src/lib/**/*']).pipe(gulp.dest('client/lib'))
+  gulp.src(['src/lib/**/*']).pipe(gulp.dest('client/app/lib'))
   done();
 });
 gulp.task('clean-client', done => {
-  gulp.src('client/*').pipe(vinylPaths(del));
+  gulp.src('client/app/*').pipe(vinylPaths(del));
   done();
 });
 

@@ -20,13 +20,16 @@ module.exports = {
 
   output: {
     filename: '[name].js',
-    path: path.resolve('./client')
+    path: path.resolve('./client/app')
   },
 
   resolve: {
-    extensions: ['', '.ts', '.js', '.json'],
+    extensions: ['', '.ts', '.js', '.json', '.css', '.scss', '.html'],
     modulesDirectories: ['node_modules'],
-    root: path.resolve('./src')
+    root: path.resolve('./src'),
+    alias: {
+      'app': 'src/ts/app'
+    }
   },
 
   module: {
