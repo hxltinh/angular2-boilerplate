@@ -1,0 +1,10 @@
+<div>
+  <h3>this is heroes list</h3>
+  <div>
+    <ul>
+      <li *ngFor="let hero of heroes" (click)="goToDetail(hero)">
+        name: {{hero.name}}
+      </li>
+    </ul>
+  </div>
+</div>

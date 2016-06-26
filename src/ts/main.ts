@@ -1,7 +1,5 @@
 import { bootstrap } from '@angular/platform-browser-dynamic';
-
-import { AppComponent } from './app/app.component';
-
 import '../scss/global.scss';
+import { AppComponent } from './containers/app.component';
 
 bootstrap(AppComponent);
