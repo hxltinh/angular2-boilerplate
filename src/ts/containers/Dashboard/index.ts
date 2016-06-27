@@ -22,7 +22,7 @@ export default class DashboardComponent {
  }
 
  goToDetail(hero: Hero) {
-   const link = ['heroDetail', { id: hero.id }];
-   this.router.navigate(link);
+   const link = ['HeroDetail', { id: hero.id }];
+   return this.router.navigate(link);
  }
 }

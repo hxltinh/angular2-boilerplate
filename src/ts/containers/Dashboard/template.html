@@ -3,6 +3,7 @@
   <div>
     <heroes-list
       [heroes]="heroes"
+      (navigateDetail)="goToDetail($event)"
     ></heroes-list>
   </div>
 </div>

@@ -1,6 +1,9 @@
 import { Component } from '@angular/core';
 import { RouteConfig, ROUTER_DIRECTIVES, ROUTER_PROVIDERS } from '@angular/router-deprecated';
+
 import DashboardComponent from './Dashboard';
+import HeroDetailComponent from './HeroDetail';
+
 import HeroService from '../services/hero';
 
 @Component({
@@ -24,10 +27,16 @@ import HeroService from '../services/hero';
   {
     path: '/dashboard',
     name: 'Dashboard',
-    component: DashboardComponent
-    // useAsDefault: true
+    component: DashboardComponent,
+    useAsDefault: true
+  },
+  {
+    path: '/detail/:id',
+    name: 'HeroDetail',
+    component: HeroDetailComponent
   }
+
 ])
-export class AppComponent {
+export class MainApp {
   title = 'Tour of Heroes';
 };

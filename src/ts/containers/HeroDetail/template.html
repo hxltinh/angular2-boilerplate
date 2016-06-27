@@ -1,0 +1,10 @@
+<div>
+  <button (click)="goBack()">Go Back</button>
+  <div *ngIf="!hero">Loading</div>
+  <div *ngIf="hero">
+    <hero-item
+      [hero]="hero"
+    ></hero-item>
+  </div>
+
+</div>
