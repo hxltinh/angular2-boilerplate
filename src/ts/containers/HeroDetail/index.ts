@@ -1,3 +1,6 @@
+/*
+*  Handle hero detail page
+*/
 import { Component, OnInit } from '@angular/core';
 import { RouteParams } from '@angular/router-deprecated';
 
@@ -12,9 +15,11 @@ import HeroItemComponent from '../../components/HeroItem';
 export default class HeroDetail implements OnInit {
 
   hero: Hero;
-
+  
+  // dependency injection
   constructor(private heroService: HeroService, private routeParams: RouteParams) {}
 
+  //execute when component is initialized
   ngOnInit() {
     const id = +this.routeParams.get('id');
     this.heroService.getHero(id)

@@ -2,6 +2,7 @@
   <button (click)="goBack()">Go Back</button>
   <div *ngIf="!hero">Loading</div>
   <div *ngIf="hero">
+    <!-- Using component HeroesList  -->
     <hero-item
       [hero]="hero"
     ></hero-item>
