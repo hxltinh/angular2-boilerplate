@@ -5,6 +5,7 @@ const DedupePlugin = require('webpack/lib/optimize/DedupePlugin');
 const envConfig = require('./config.json')[process.env.NODE_ENV];
 const commonConf = require('./common');
 
+const tslintConfig = require ('../../tslint');
 module.exports = () => {
   const config = _.cloneDeep(commonConf);
 
@@ -12,12 +13,18 @@ module.exports = () => {
 
   config.debug = true;
 
-  config.entry.vendor = config.entry.vendor.concat([
+  config.entry.bundle = config.entry.bundle.concat([
     `webpack-dev-server/client?http://localhost:${envConfig.api.port}`,
     'webpack/hot/dev-server'
   ]);
 
   config.output.publicPath = '/assets/';
+
+  config.module.preLoaders = [
+    { test: /\.ts?$/, loader: 'tslint', exclude: /node_modules/ }
+  ];
+
+  config.tslint = tslintConfig;
 
   config.module.loaders = config.module.loaders.concat([
     { test: /\.scss$/, loaders: [ 'style', 'css?sourceMap', 'sass?sourceMap' ]},
