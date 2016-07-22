@@ -20,10 +20,11 @@ export default class DashboardComponent {
 
   //dependency injection
   constructor(private router: Router ,private heroService: HeroService) {}
-  
+
   //execute when component is initialized
   ngOnInit() {
-    this.heroService.getHeroes().then(res => this.heroes = res);
+    // this.heroService.getHeroes().then(res => this.heroes = res);
+    this.heroService.getHeroes().subscribe(res => this.heroes = res);
   }
 
   goToDetail(hero: Hero) {

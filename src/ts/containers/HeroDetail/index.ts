@@ -15,15 +15,21 @@ import HeroItemComponent from '../../components/HeroItem';
 export default class HeroDetail implements OnInit {
 
   hero: Hero;
-  
+
   // dependency injection
   constructor(private heroService: HeroService, private routeParams: RouteParams) {}
 
   //execute when component is initialized
   ngOnInit() {
     const id = +this.routeParams.get('id');
+    // this.heroService.getHero(id)
+    //   .then(hero => this.hero = hero);
+
     this.heroService.getHero(id)
-      .then(hero => this.hero = hero);
+      .subscribe( hero => {
+        console.info('hero:', hero);
+        this.hero = hero;
+      });
   }
 
   goBack() {
